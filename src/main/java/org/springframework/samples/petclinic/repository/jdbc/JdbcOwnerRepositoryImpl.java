@@ -107,9 +107,12 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         return owner;
     }
 
-    public void loadPetsAndVisits(final Owner owner) {
+    private void loadPetsAndVisits(final Owner owner) {
+        Integer ownerId = owner.getId();
+        assert ownerId != null;
+
         Map<String, Object> params = new HashMap<>();
-        params.put("id", owner.getId());
+        params.put("id", ownerId);
         final List<JdbcPet> pets = this.namedParameterJdbcTemplate.query(
             "SELECT pets.id, name, birth_date, type_id, owner_id, visits.id as visit_id, visit_date, description, pet_id FROM pets LEFT OUTER JOIN visits ON  pets.id = pet_id WHERE owner_id=:id",
             params,

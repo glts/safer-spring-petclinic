@@ -97,7 +97,9 @@ public class JdbcPetRepositoryImpl implements PetRepository {
         owner.addPet(pet);
         pet.setType(EntityUtils.getById(findPetTypes(), PetType.class, pet.getTypeId()));
 
-        List<Visit> visits = this.visitRepository.findByPetId(pet.getId());
+        Integer petId = pet.getId();
+        assert petId != null;
+        List<Visit> visits = this.visitRepository.findByPetId(petId);
         for (Visit visit : visits) {
             pet.addVisit(visit);
         }
