@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Nullable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,42 +47,46 @@ import org.springframework.core.style.ToStringCreator;
 public class Owner extends Person {
     @Column(name = "address")
     @NotEmpty
+    @Nullable
     private String address;
 
     @Column(name = "city")
     @NotEmpty
+    @Nullable
     private String city;
 
     @Column(name = "telephone")
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
+    @Nullable
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @Nullable
     private Set<Pet> pets;
 
 
-    public String getAddress() {
+    @Nullable public String getAddress() {
         return this.address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(@Nullable String address) {
         this.address = address;
     }
 
-    public String getCity() {
+    @Nullable public String getCity() {
         return this.city;
     }
 
-    public void setCity(String city) {
+    public void setCity(@Nullable String city) {
         this.city = city;
     }
 
-    public String getTelephone() {
+    @Nullable public String getTelephone() {
         return this.telephone;
     }
 
-    public void setTelephone(String telephone) {
+    public void setTelephone(@Nullable String telephone) {
         this.telephone = telephone;
     }
 
@@ -113,7 +118,7 @@ public class Owner extends Person {
      * @param name to test
      * @return true if pet name is already in use
      */
-    public Pet getPet(String name) {
+    @Nullable public Pet getPet(String name) {
         return getPet(name, false);
     }
 
@@ -123,6 +128,7 @@ public class Owner extends Person {
      * @param name to test
      * @return true if pet name is already in use
      */
+    @Nullable
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
         for (Pet pet : getPetsInternal()) {

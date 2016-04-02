@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import javax.annotation.Nullable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,13 +31,14 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Nullable
     protected Integer id;
 
-    public Integer getId() {
+    @Nullable public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(@Nullable Integer id) {
         this.id = id;
     }
 
