@@ -21,6 +21,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -124,12 +125,16 @@ public class JdbcPetRepositoryImpl implements PetRepository {
      * Creates a {@link MapSqlParameterSource} based on data values from the supplied {@link Pet} instance.
      */
     private MapSqlParameterSource createPetParameterSource(Pet pet) {
+        LocalDate birthDate = pet.getBirthDate();
+        PetType type = pet.getType();
+        Owner owner = pet.getOwner();
+
         return new MapSqlParameterSource()
             .addValue("id", pet.getId())
             .addValue("name", pet.getName())
-            .addValue("birth_date", pet.getBirthDate().toDate())
-            .addValue("type_id", pet.getType().getId())
-            .addValue("owner_id", pet.getOwner().getId());
+            .addValue("birth_date", birthDate == null ? null : birthDate.toDate())
+            .addValue("type_id", type == null ? null : type.getId())
+            .addValue("owner_id", owner == null ? null : owner.getId());
     }
 
 }

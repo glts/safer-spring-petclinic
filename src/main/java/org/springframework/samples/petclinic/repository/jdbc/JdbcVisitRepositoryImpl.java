@@ -15,11 +15,13 @@
  */
 package org.springframework.samples.petclinic.repository.jdbc;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Repository;
@@ -71,11 +73,14 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
      * Creates a {@link MapSqlParameterSource} based on data values from the supplied {@link Visit} instance.
      */
     private MapSqlParameterSource createVisitParameterSource(Visit visit) {
+        DateTime date = visit.getDate();
+        Pet pet = visit.getPet();
+
         return new MapSqlParameterSource()
             .addValue("id", visit.getId())
-            .addValue("visit_date", visit.getDate().toDate())
+            .addValue("visit_date", date == null ? null : date.toDate())
             .addValue("description", visit.getDescription())
-            .addValue("pet_id", visit.getPet().getId());
+            .addValue("pet_id", pet == null ? null : pet.getId());
     }
 
     @Override
