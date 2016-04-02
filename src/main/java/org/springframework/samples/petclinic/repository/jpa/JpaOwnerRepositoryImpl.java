@@ -39,6 +39,7 @@ import org.springframework.stereotype.Repository;
 public class JpaOwnerRepositoryImpl implements OwnerRepository {
 
     @PersistenceContext
+    @SuppressWarnings("initialization")
     private EntityManager em;
 
 

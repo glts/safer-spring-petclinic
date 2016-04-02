@@ -38,6 +38,7 @@ import org.springframework.stereotype.Repository;
 public class JpaPetRepositoryImpl implements PetRepository {
 
     @PersistenceContext
+    @SuppressWarnings("initialization")
     private EntityManager em;
 
     @Override

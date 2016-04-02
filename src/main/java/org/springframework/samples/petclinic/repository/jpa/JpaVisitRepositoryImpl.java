@@ -40,6 +40,7 @@ import org.springframework.stereotype.Repository;
 public class JpaVisitRepositoryImpl implements VisitRepository {
 
     @PersistenceContext
+    @SuppressWarnings("initialization")
     private EntityManager em;
 
 

@@ -38,6 +38,7 @@ import org.springframework.stereotype.Repository;
 public class JpaVetRepositoryImpl implements VetRepository {
 
     @PersistenceContext
+    @SuppressWarnings("initialization")
     private EntityManager em;
 
 
