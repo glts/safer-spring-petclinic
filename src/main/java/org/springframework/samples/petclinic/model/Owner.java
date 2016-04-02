@@ -134,8 +134,7 @@ public class Owner extends Person {
         for (Pet pet : getPetsInternal()) {
             if (!ignoreNew || !pet.isNew()) {
                 String compName = pet.getName();
-                compName = compName.toLowerCase();
-                if (compName.equals(name)) {
+                if (compName != null && compName.toLowerCase().equals(name)) {
                     return pet;
                 }
             }
