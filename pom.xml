@@ -458,7 +458,7 @@
                             <compilerArgs>
                                 <arg>-Xbootclasspath/p:${org.checkerframework:jdk8:jar}</arg>
                                 <arg>-AassumeAssertionsAreEnabled</arg>
-                                <arg>-AskipUses=org\.joda\.time\.|org\.springframework\.beans\.|org\.springframework\.core\.|org\.springframework\.dao\.|org\.springframework\.data\.|org\.springframework\.format\.|org\.springframework\.jdbc\.|org\.springframework\.orm\.|org\.springframework\.stereotype\.|org\.springframework\.ui\.|org\.springframework\.util\.|org\.springframework\.validation\.|org\.springframework\.web\.</arg>
+                                <arg>-AskipUses=org\.assertj\.|org\.joda\.time\.|org\.springframework\.beans\.|org\.springframework\.core\.|org\.springframework\.dao\.|org\.springframework\.data\.|org\.springframework\.format\.|org\.springframework\.jdbc\.|org\.springframework\.orm\.|org\.springframework\.stereotype\.|org\.springframework\.ui\.|org\.springframework\.util\.|org\.springframework\.validation\.|org\.springframework\.web\.</arg>
                             </compilerArgs>
                         </configuration>
                     </plugin>
