@@ -54,6 +54,7 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class AbstractClinicServiceTests {
 
     @Autowired
+    @SuppressWarnings("initialization")
     protected ClinicService clinicService;
 
     @Test
