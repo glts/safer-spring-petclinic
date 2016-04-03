@@ -22,6 +22,8 @@ import org.springframework.samples.petclinic.model.Visit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.annotation.Nullable;
+
 /**
  * {@link ResultSetExtractor} implementation by using the
  * {@link OneToManyResultSetExtractor} of Spring Data Core JDBC Extensions.
@@ -39,6 +41,7 @@ public class JdbcPetVisitExtractor extends
     }
 
     @Override
+    @Nullable
     protected Integer mapForeignKey(ResultSet rs) throws SQLException {
         if (rs.getObject("visits.pet_id") == null) {
             return null;
