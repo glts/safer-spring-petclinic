@@ -50,7 +50,7 @@ public class PetTypeFormatter implements Formatter<PetType> {
 
     @Override
     public String print(PetType petType, Locale locale) {
-        return petType.getName();
+        return Objects.toString(petType.getName());
     }
 
     @Override
