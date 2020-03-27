@@ -412,6 +412,55 @@
             </plugin>
         </plugins>
     </reporting>
-
+    <profiles>
+        <profile>
+            <id>checker</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.checkerframework</groupId>
+                    <artifactId>checker</artifactId>
+                    <version>1.9.13</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.checkerframework</groupId>
+                    <artifactId>jdk8</artifactId>
+                    <version>1.9.13</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.10</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.3</version>
+                        <configuration>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <annotationProcessors>
+                                <annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
+                            </annotationProcessors>
+                            <compilerArgs>
+                                <arg>-Xbootclasspath/p:${org.checkerframework:jdk8:jar}</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <url>demopetclinic</url>
 </project>
