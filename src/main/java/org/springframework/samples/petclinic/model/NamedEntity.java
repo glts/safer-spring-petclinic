@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import java.util.Objects;
+
 import javax.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -44,7 +46,7 @@ public class NamedEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return this.getName();
+        return Objects.toString(getName());
     }
 
 }
