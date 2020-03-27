@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import javax.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -30,13 +31,14 @@ import javax.persistence.MappedSuperclass;
 public class NamedEntity extends BaseEntity {
 
     @Column(name = "name")
+    @Nullable
     private String name;
 
-    public String getName() {
+    @Nullable public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 

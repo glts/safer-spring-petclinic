@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.model;
 
+import javax.annotation.Nullable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -41,6 +42,7 @@ public class Visit extends BaseEntity {
     @Column(name = "visit_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @Nullable
     private DateTime date;
 
     /**
@@ -48,6 +50,7 @@ public class Visit extends BaseEntity {
      */
     @NotEmpty
     @Column(name = "description")
+    @Nullable
     private String description;
 
     /**
@@ -55,7 +58,7 @@ public class Visit extends BaseEntity {
      */
     @ManyToOne
     @JoinColumn(name = "pet_id")
-    private Pet pet;
+    @Nullable private Pet pet;
 
 
     /**
@@ -80,7 +83,7 @@ public class Visit extends BaseEntity {
      *
      * @param date New value of property date.
      */
-    public void setDate(DateTime date) {
+    @Nullable public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -89,7 +92,7 @@ public class Visit extends BaseEntity {
      *
      * @return Value of property description.
      */
-    public String getDescription() {
+    @Nullable public String getDescription() {
         return this.description;
     }
 
@@ -98,7 +101,7 @@ public class Visit extends BaseEntity {
      *
      * @param description New value of property description.
      */
-    public void setDescription(String description) {
+    public void setDescription(@Nullable String description) {
         this.description = description;
     }
 
@@ -107,7 +110,7 @@ public class Visit extends BaseEntity {
      *
      * @return Value of property pet.
      */
-    public Pet getPet() {
+    @Nullable public Pet getPet() {
         return this.pet;
     }
 
@@ -116,7 +119,7 @@ public class Visit extends BaseEntity {
      *
      * @param pet New value of property pet.
      */
-    public void setPet(Pet pet) {
+    public void setPet(@Nullable Pet pet) {
         this.pet = pet;
     }
 

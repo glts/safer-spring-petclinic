@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Nullable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,40 +52,44 @@ public class Pet extends NamedEntity {
     @Column(name = "birth_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @Nullable
     private LocalDate birthDate;
 
     @ManyToOne
     @JoinColumn(name = "type_id")
+    @Nullable
     private PetType type;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
+    @Nullable
     private Owner owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+    @Nullable
     private Set<Visit> visits;
 
-    public LocalDate getBirthDate() {
+    @Nullable public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(@Nullable LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public PetType getType() {
+    @Nullable public PetType getType() {
         return this.type;
     }
 
-    public void setType(PetType type) {
+    public void setType(@Nullable PetType type) {
         this.type = type;
     }
 
-    public Owner getOwner() {
+    @Nullable public Owner getOwner() {
         return this.owner;
     }
 
-    protected void setOwner(Owner owner) {
+    protected void setOwner(@Nullable Owner owner) {
         this.owner = owner;
     }
 
